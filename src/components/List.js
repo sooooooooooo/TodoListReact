@@ -15,16 +15,28 @@ const List = props => {
 	}
 
 	const handleCheckbox = (e, i) => {
-		// e.preventDefault();
+		// e.preventDefault();	// can NOT be used, it will prevent the checkbox's checked/unchecked behavior!
 		console.log(e.target.checked);
 		console.log(tasks[i]);
-		setTasks(
-			tasks.filter((task, index, arr) => {
-				if (index === i) {task.completed = e.target.checked}
-				return arr;
-			})
-		)
-		console.log(tasks);
+		// const checkComplete = task => {
+		// 	if (tasks.indexOf(task) === i) {task.completed = e.target.checked}
+		// 	return task;
+		// }
+		// setTasks(
+		// 	tasks.filter((task, index, arr) => {
+		// 		if (index === i) {task.completed = e.target.checked}
+		// 		return arr;
+		// 	})
+		// )
+
+		// setTasks(
+		// 	tasks.filter(checkComplete)
+		// )
+
+		let toBeUpdatedTask = tasks[i];
+		toBeUpdatedTask.completed = e.target.checked;
+		let updatedTasks = tasks.slice(0,i).concat(toBeUpdatedTask).concat(tasks.slice(i+1))
+		setTasks(updatedTasks)
 	}
 
 	return(

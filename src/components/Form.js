@@ -16,6 +16,7 @@ const Form = props => {
 				completed: false
 			}
 		])
+		form.reset();
 	}
 
 	return(
